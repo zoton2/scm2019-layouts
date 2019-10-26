@@ -1,14 +1,14 @@
 {
-  "name": "nodecg-vue-ts-template",
+  "name": "scm2019-layouts",
   "version": "1.0.0",
-  "description": "Template for NodeCG bundles that use Vue.js and TypeScript.",
-  "homepage": "https://github.com/zoton2/nodecg-vue-ts-template#readme",
+  "description": "The on-screen graphics used during SpeedSouls Charity Marathon 2019.",
+  "homepage": "https://github.com/zoton2/scm2019-layouts#readme",
   "bugs": {
-    "url": "https://github.com/zoton2/nodecg-vue-ts-template/issues"
+    "url": "https://github.com/zoton2/scm2019-layouts/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zoton2/nodecg-vue-ts-template.git"
+    "url": "git+https://github.com/zoton2/scm2019-layouts.git"
   },
   "license": "MIT",
   "author": "zoton2",
