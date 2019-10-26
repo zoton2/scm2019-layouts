@@ -27,11 +27,14 @@
     "watch:extension": "npx tsc -b tsconfig.extension.json -w"
   },
   "dependencies": {
-    "clone": "^2.1.2"
+    "clone": "^2.1.2",
+    "needle": "^2.4.0",
+    "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
     "@mdi/font": "^4.5.95",
     "@types/clone": "^0.1.30",
+    "@types/needle": "^2.0.4",
     "@typescript-eslint/eslint-plugin": "~2.4.0",
     "@typescript-eslint/parser": "~2.4.0",
     "@vue/component-compiler-utils": "^3.0.0",

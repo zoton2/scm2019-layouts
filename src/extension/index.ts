@@ -5,5 +5,5 @@ import { set } from './util/nodecg';
 
 export = (nodecg: NodeCG): void => {
   set(nodecg);
-  nodecg.log.info('Extension code working!');
+  require('./tracker');
 };
