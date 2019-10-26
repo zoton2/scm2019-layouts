@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "obs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "default": true
+        },
+        "address": {
+          "type": "string",
+          "default": "localhost:4444"
+        },
+        "password": {
+          "type": "string",
+          "default": ""
+        },
+        "names": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "scenes": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "intermission": {
+                  "type": "string",
+                  "default": "Intermission"
+                }
+              },
+              "required": [
+                "intermission"
+              ]
+            }
+          },
+          "required": [
+            "scenes"
+          ]
+        }
+      },
+      "required": [
+        "enable",
+        "address",
+        "names"
+      ]
+    }
+  },
+  "required": [
+    "obs"
+  ]
+}

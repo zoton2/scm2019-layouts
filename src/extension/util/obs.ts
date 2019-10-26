@@ -1,0 +1,80 @@
+/* eslint @typescript-eslint/ban-ts-ignore: off */
+
+import obsWebsocketJs from 'obs-websocket-js';
+import { Configschema } from '../../../configschema';
+import { get } from './nodecg';
+
+const nodecg = get();
+const config = (nodecg.bundleConfig as Configschema).obs;
+
+// Extending the OBS library with some of our own functions.
+class OBSUtility extends obsWebsocketJs {
+  /**
+   * Change to this OBS scene.
+   * @param name Name of the scene.
+   */
+  async changeScene(name: string): Promise<void> {
+    try {
+      await this.send('SetCurrentScene', { 'scene-name': name });
+    } catch (err) {
+      nodecg.log.warn(`Cannot change OBS scene [${name}]: ${err.error}`);
+      throw err;
+    }
+  }
+
+  /**
+   * Change to the intermission based on name in config.
+   */
+  async changeToIntermission(): Promise<void> {
+    try {
+      await this.changeScene(config.names.scenes.intermission);
+    } catch (err) {
+      // err
+    }
+  }
+
+  /**
+   * Mute the named OBS source.
+   * @param source Name of the source.
+   */
+  async muteSource(source: string): Promise<void> {
+    try {
+      await this.send('SetMute', { source, mute: true });
+    } catch (err) {
+      nodecg.log.warn(`Cannot mute OBS source [${source}]: ${err.error}`);
+      throw err;
+    }
+  }
+}
+
+const obs = new OBSUtility();
+const settings = {
+  address: config.address,
+  password: config.password,
+};
+
+function connect(): void {
+  obs.connect(settings).then(() => {
+    nodecg.log.info('OBS connection successful.');
+  }).catch((err) => {
+    nodecg.log.warn('OBS connection error.');
+    nodecg.log.debug('OBS connection error:', err);
+  });
+}
+
+if (config.enable) {
+  nodecg.log.info('Setting up OBS connection.');
+  connect();
+  obs.on('ConnectionClosed', () => {
+    nodecg.log.warn('OBS connection lost, retrying in 5 seconds.');
+    setTimeout(connect, 5000);
+  });
+
+  // @ts-ignore: Pretty sure this emits an error.
+  obs.on('error', (err) => {
+    nodecg.log.warn('OBS connection error.');
+    nodecg.log.debug('OBS connection error:', err);
+  });
+}
+
+export default obs;
