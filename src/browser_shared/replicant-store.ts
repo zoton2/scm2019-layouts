@@ -5,11 +5,13 @@ import Vuex, { Store } from 'vuex';
 import { RunDataActiveRunSurrounding } from '../../../nodecg-speedcontrol/schemas';
 import { RunDataActiveRun, RunDataArray, Timer } from '../../../nodecg-speedcontrol/types';
 import { Host } from '../../schemas';
+import { Asset } from '../../types';
 
 Vue.use(Vuex);
 
 const replicantList: { name: string; bundle?: string }[] = [
   { name: 'host' },
+  { name: 'assets:sponsor-logos' },
   { name: 'runDataActiveRun', bundle: 'nodecg-speedcontrol' },
   { name: 'runDataArray', bundle: 'nodecg-speedcontrol' },
   { name: 'runDataActiveRunSurrounding', bundle: 'nodecg-speedcontrol' },
@@ -19,6 +21,7 @@ const replicants: ReplicantBrowser<unknown>[] = [];
 
 export const store = new Vuex.Store<{
   host: Host;
+  'assets:sponsor-logos': Asset[];
   runDataActiveRun: RunDataActiveRun;
   runDataArray: RunDataArray;
   runDataActiveRunSurrounding: RunDataActiveRunSurrounding;
@@ -51,6 +54,7 @@ replicantList.forEach((obj) => {
 
 export async function create(): Promise<Store<{
   host: Host;
+  'assets:sponsor-logos': Asset[];
   runDataActiveRun: RunDataActiveRun;
   runDataArray: RunDataArray;
   runDataActiveRunSurrounding: RunDataActiveRunSurrounding;

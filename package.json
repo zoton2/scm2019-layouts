@@ -102,6 +102,18 @@
         "width": 1920,
         "height": 1080
       }
+    ],
+    "assetCategories": [
+      {
+        "name": "sponsor-logos",
+        "title": "Sponsor Logos",
+        "allowedTypes": [
+          "jpg",
+          "jpeg",
+          "png",
+          "svg"
+        ]
+      }
     ]
   },
   "vue": {
