@@ -27,45 +27,38 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import { store as scStore } from '../../browser_shared/sc-store';
+import { Vue, Component } from 'vue-property-decorator';
+import { State } from 'vuex-class';
 import { RunDataActiveRunSurrounding } from '../../../../nodecg-speedcontrol/schemas';
-import { RunDataArray, RunData } from '../../../../nodecg-speedcontrol/types';
+import { RunDataArray, RunData, Timer } from '../../../../nodecg-speedcontrol/types';
 
-export default Vue.extend({
-  computed: {
-    runDataArray(): RunDataArray {
-      return scStore.state.runDataArray;
-    },
-    runDataActiveRunSurrounding(): RunDataActiveRunSurrounding {
-      return scStore.state.runDataActiveRunSurrounding;
-    },
-    nextRun(): RunData | undefined {
-      return this.runDataArray.find((run) => run.id === this.runDataActiveRunSurrounding.next);
-    },
-    nextRunGameName(): string {
-      if (this.nextRun && this.nextRun.game) {
-        return `${this.nextRun.game.slice(0, 35)}${(this.nextRun.game.length > 35) ? '...' : ''}`;
-      }
-      return '(The Run With No Name)';
-    },
-    timerState(): string {
-      return scStore.state.timer.state;
-    },
-    disableChange(): boolean {
-      return ['running', 'paused'].includes(this.timerState);
-    },
-  },
-  methods: {
-    playNextRun(): void {
-      if (this.nextRun) {
-        nodecg.sendMessage('nextRun').then(() => {
-          // run change successful
-        }).catch(() => {
-          // run change unsuccessful
-        });
-      }
-    },
-  },
-});
+@Component
+export default class App extends Vue {
+  @State runDataArray!: RunDataArray;
+  @State runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
+  @State timer!: Timer;
+
+  get nextRun(): RunData | undefined {
+    return this.runDataArray.find((run) => run.id === this.runDataActiveRunSurrounding.next);
+  }
+  get nextRunGameName(): string {
+    if (this.nextRun && this.nextRun.game) {
+      return `${this.nextRun.game.slice(0, 35)}${(this.nextRun.game.length > 35) ? '...' : ''}`;
+    }
+    return '(The Run With No Name)';
+  }
+  get disableChange(): boolean {
+    return ['running', 'paused'].includes(this.timer.state);
+  }
+
+  playNextRun(): void {
+    if (this.nextRun) {
+      nodecg.sendMessage('nextRun').then(() => {
+        // run change successful
+      }).catch(() => {
+        // run change unsuccessful
+      });
+    }
+  }
+}
 </script>
