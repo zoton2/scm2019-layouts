@@ -19,14 +19,16 @@ const replicantList: { name: string; bundle?: string }[] = [
 ];
 const replicants: ReplicantBrowser<unknown>[] = [];
 
-export const store = new Vuex.Store<{
+interface StoreTypes {
   host: Host;
   'assets:sponsor-logos': Asset[];
   runDataActiveRun: RunDataActiveRun;
   runDataArray: RunDataArray;
   runDataActiveRunSurrounding: RunDataActiveRunSurrounding;
   timer: Timer;
-}>({
+}
+
+export const store = new Vuex.Store<StoreTypes>({
   mutations: {
     updateReplicant(state, { name, value }): void {
       Vue.set(state, name, value);
@@ -52,13 +54,6 @@ replicantList.forEach((obj) => {
   replicants.push(replicant);
 });
 
-export async function create(): Promise<Store<{
-  host: Host;
-  'assets:sponsor-logos': Asset[];
-  runDataActiveRun: RunDataActiveRun;
-  runDataArray: RunDataArray;
-  runDataActiveRunSurrounding: RunDataActiveRunSurrounding;
-  timer: Timer;
-}>> {
+export async function create(): Promise<Store<StoreTypes>> {
   return NodeCG.waitForReplicants(...replicants).then(() => store);
 }
