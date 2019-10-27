@@ -23,6 +23,14 @@
     >
       Cannot change run while timer is {{ timerState }}.
     </v-alert>
+    <v-btn
+      :style="{ 'margin-top': '5px' }"
+      :disabled="refreshing"
+      :loading="refreshing"
+      @click="forceRefreshIntermission"
+    >
+      Force Refresh Intermission
+    </v-btn>
   </v-app>
 </template>
 
@@ -59,6 +67,14 @@ export default class App extends Vue {
         // run change unsuccessful
       });
     }
+  }
+
+  refreshing = false;
+  // eslint-disable-next-line class-methods-use-this
+  forceRefreshIntermission(): void {
+    this.refreshing = true;
+    nodecg.sendMessage('refreshIntermission');
+    setTimeout(() => { this.refreshing = false; }, 1000);
   }
 }
 </script>
