@@ -30,7 +30,8 @@
     "clone": "^2.1.2",
     "needle": "^2.4.0",
     "obs-websocket-js": "^3.1.0",
-    "socket.io-client": "^2.3.0"
+    "socket.io-client": "^2.3.0",
+    "vuex-class": "^0.3.2"
   },
   "devDependencies": {
     "@mdi/font": "^4.5.95",
@@ -61,8 +62,10 @@
     "ts-loader": "^6.2.1",
     "typescript": "^3.6.4",
     "vue": "^2.6.10",
+    "vue-class-component": "^7.1.0",
     "vue-hot-reload-api": "^2.3.4",
     "vue-loader": "^15.7.1",
+    "vue-property-decorator": "^8.3.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
     "vuetify": "^2.1.6",
@@ -84,6 +87,13 @@
         "file": "obs.html",
         "workspace": "SCM2019",
         "width": 3
+      },
+      {
+        "name": "host",
+        "title": "Host",
+        "file": "host.html",
+        "workspace": "SCM2019",
+        "width": 2
       }
     ],
     "graphics": [
