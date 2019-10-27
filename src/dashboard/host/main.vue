@@ -6,6 +6,8 @@
         label="Host"
         hide-details
         filled
+        :spellcheck="false"
+        @keyup.enter="updateHost"
       ></v-text-field>
       <v-btn
         height="56px"
