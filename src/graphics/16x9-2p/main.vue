@@ -3,7 +3,6 @@
     <img src="./background.png">
     <timer
       :style="{
-        position: 'fixed',
         left: '646px',
         top: '547px',
         width: '237px',
@@ -12,7 +11,6 @@
     ></timer>
     <game
       :style="{
-        position: 'fixed',
         left: '394px',
         top: '547px',
         width: '237px',
@@ -21,7 +19,6 @@
     ></game>
     <player
       :style="{
-        position: 'fixed',
         left: '20px',
         top: '97px',
         width: '237px',
@@ -30,7 +27,6 @@
     ></player>
     <player
       :style="{
-        position: 'fixed',
         left: '1020px',
         top: '97px',
         width: '237px',
@@ -39,37 +35,30 @@
     ></player>
     <host
       :style="{
-        position: 'fixed',
         left: '898px',
         top: '547px',
         width: '237px',
         height: '74px',
-        'font-size': '1.3em',
       }"
     ></host>
     <donation-total
       :style="{
-        position: 'fixed',
         left: '142px',
         top: '547px',
         width: '237px',
         height: '74px',
-        'font-size': '2em',
       }"
     ></donation-total>
     <donations
       :style="{
-        position: 'fixed',
         left: '143px',
         top: '633px',
         width: '897px',
         height: '74px',
-        'font-size': '1.5em',
       }"
     ></donations>
     <sponsor-logos
       :style="{
-        position: 'fixed',
         left: '1048px',
         top: '633px',
         width: '90px',

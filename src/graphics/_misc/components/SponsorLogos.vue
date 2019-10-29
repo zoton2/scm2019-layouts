@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ position: 'fixed' }">
     <img
       v-if="sponsorLogos.length"
       :style="{ width: '100%', height: '100%' }"

@@ -3,7 +3,6 @@
     <img src="./background.png">
     <timer
       :style="{
-        position: 'fixed',
         left: '544px',
         top: '504px',
         width: '191px',
@@ -12,7 +11,6 @@
     ></timer>
     <game
       :style="{
-        position: 'fixed',
         left: '544px',
         top: '149px',
         width: '191px',
@@ -22,7 +20,6 @@
     ></game>
     <player
       :style="{
-        position: 'fixed',
         left: '17px',
         top: '12px',
         width: '327px',
@@ -31,7 +28,6 @@
     ></player>
     <player
       :style="{
-        position: 'fixed',
         left: '933px',
         top: '12px',
         width: '327px',
@@ -40,7 +36,6 @@
     ></player>
     <player
       :style="{
-        position: 'fixed',
         left: '17px',
         top: '660px',
         width: '327px',
@@ -49,7 +44,6 @@
     ></player>
     <player
       :style="{
-        position: 'fixed',
         left: '934px',
         top: '660px',
         width: '327px',
@@ -58,37 +52,30 @@
     ></player>
     <host
       :style="{
-        position: 'fixed',
         left: '544px',
         top: '581px',
         width: '191px',
         height: '67px',
-        'font-size': '1.3em',
       }"
     ></host>
     <donation-total
       :style="{
-        position: 'fixed',
         left: '544px',
         top: '72px',
         width: '191px',
         height: '67px',
-        'font-size': '2em',
       }"
     ></donation-total>
     <donations
       :style="{
-        position: 'fixed',
         left: '354px',
         top: '660px',
         width: '570px',
         height: '52px',
-        'font-size': '1.5em',
       }"
     ></donations>
     <sponsor-logos
       :style="{
-        position: 'fixed',
         left: '543px',
         top: '368px',
         width: '193px',

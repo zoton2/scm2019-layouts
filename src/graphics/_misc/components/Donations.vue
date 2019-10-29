@@ -1,7 +1,7 @@
 <template>
   <div
     class="Flex"
-    :style="{ 'white-space': 'nowrap' }"
+    :style="{ position: 'fixed', 'white-space': 'nowrap', 'font-size': '1.5em' }"
   >
     {{ text }}
   </div>

@@ -1,5 +1,8 @@
 <template>
-  <div class="Flex">
+  <div
+    class="Flex"
+    :style="{ position: 'fixed' }"
+  >
     <div
       id="Time"
       :class="timer.state"

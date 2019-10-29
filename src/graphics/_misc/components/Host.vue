@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div :style="{ position: 'fixed' }">
     <transition name="fade">
       <div
         :key="host"
         class="Flex"
-        :style="{ position: 'absolute' }"
+        :style="{ position: 'absolute', 'font-size': '1.3em' }"
       >
         <img
           src="../mic.png"

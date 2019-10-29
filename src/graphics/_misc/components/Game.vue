@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ position: 'fixed' }">
     <transition name="fade">
       <div
         v-if="runDataActiveRun"

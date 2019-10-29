@@ -1,5 +1,8 @@
 <template>
-  <div class="Flex">
+  <div
+    class="Flex"
+    :style="{ 'font-size': '2em', position: 'fixed' }"
+  >
     <img
       src="../stc.png"
       :style="{ 'margin-right': '10px' }"

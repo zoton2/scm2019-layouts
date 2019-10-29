@@ -4,7 +4,6 @@
     <upcoming-run
       :run-data="nextRun"
       :style="{
-        position: 'fixed',
         left: '172px',
         top: '220px',
         width: '643px',
@@ -14,7 +13,6 @@
     <upcoming-run
       :run-data="onDeck"
       :style="{
-        position: 'fixed',
         left: '172px',
         top: '443px',
         width: '643px',
@@ -23,7 +21,6 @@
     ></upcoming-run>
     <sponsor-logos
       :style="{
-        position: 'fixed',
         left: '835px',
         top: '220px',
         width: '248px',
@@ -32,32 +29,26 @@
     ></sponsor-logos>
     <host
       :style="{
-        position: 'fixed',
         left: '839px',
         top: '446px',
         width: '240px',
         height: '76px',
-        'font-size': '1.3em',
       }"
     ></host>
     <donation-total
       :style="{
-        position: 'fixed',
         left: '839px',
         top: '538px',
         width: '240px',
         height: '76px',
-        'font-size': '3em',
       }"
     ></donation-total>
     <donations
       :style="{
-        position: 'fixed',
         left: '172px',
         top: '637px',
         width: '911px',
         height: '59px',
-        'font-size': '1.5em',
       }"
     ></donations>
   </div>
