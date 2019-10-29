@@ -118,6 +118,11 @@
         "file": "16x9-2p.html",
         "width": 1280,
         "height": 720
+      },
+      {
+        "file": "16x9-3p.html",
+        "width": 1280,
+        "height": 720
       }
     ],
     "assetCategories": [
