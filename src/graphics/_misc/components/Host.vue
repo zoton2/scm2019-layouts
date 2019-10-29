@@ -1,5 +1,5 @@
 <template>
-  <div :style="{ position: 'relative' }">
+  <div>
     <transition name="fade">
       <div
         :key="host"

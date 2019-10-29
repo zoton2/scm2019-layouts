@@ -3,10 +3,7 @@
     <div
       id="Time"
       :class="timer.state"
-      :style="{
-        'font-size': '2.5em',
-        transition: '1s',
-      }"
+      :style="{ 'font-size': '2.5em', transition: '1s' }"
     >
       <span
         v-for="char in timer.time.split('')"

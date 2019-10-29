@@ -1,7 +1,5 @@
 <template>
-  <div
-    :style="{ position: 'relative' }"
-  >
+  <div>
     <transition name="fade">
       <div
         v-if="runDataActiveRun"
