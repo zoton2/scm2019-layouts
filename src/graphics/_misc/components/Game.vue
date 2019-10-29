@@ -9,13 +9,13 @@
       >
         <div
           v-if="runDataActiveRun"
-          :style="{ 'font-size': '1.3em' }"
+          :style="{ 'font-size': `${1.3 * scale}em` }"
         >
           {{ runDataActiveRun.game }}
         </div>
         <div
           v-if="runDataActiveRun"
-          :style="{ 'font-size': '1.1em', color: '#cccccc' }"
+          :style="{ 'font-size': `${1.1 * scale}em`, color: '#cccccc' }"
         >
           {{ runDataActiveRun.category }}
         </div>
@@ -25,12 +25,13 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { Vue, Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import { RunDataActiveRun } from '../../../../../nodecg-speedcontrol/types';
 
 @Component
 export default class Game extends Vue {
   @State runDataActiveRun!: RunDataActiveRun;
+  @Prop({ default: 1 }) readonly scale!: number;
 }
 </script>
