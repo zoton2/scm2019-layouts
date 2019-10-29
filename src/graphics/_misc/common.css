@@ -2,10 +2,16 @@
   font-family: 'Optimus Princeps';
   src: url('./OptimusPrinceps.ttf') format('truetype');
 }
+/* The underscore in the above font is broken and we use it. */
+@font-face {
+  font-family: 'Underscore';
+  src: local('Times New Roman');
+  unicode-range: U+005F;
+}
 
 body {
   margin: 0;
   padding: 0;
   color: white;
-  font-family: 'OptimusPrinceps';
+  font-family: 'Underscore', 'Optimus Princeps';
 }
