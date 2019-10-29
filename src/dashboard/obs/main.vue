@@ -70,7 +70,6 @@ export default class App extends Vue {
   }
 
   refreshing = false;
-  // eslint-disable-next-line class-methods-use-this
   forceRefreshIntermission(): void {
     this.refreshing = true;
     nodecg.sendMessage('refreshIntermission');

@@ -4,13 +4,14 @@ import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 import { RunDataActiveRunSurrounding } from '../../../nodecg-speedcontrol/schemas';
 import { RunDataActiveRun, RunDataArray, Timer } from '../../../nodecg-speedcontrol/types';
-import { Host } from '../../schemas';
+import { DonationTotal, Host } from '../../schemas';
 import { Asset } from '../../types';
 
 Vue.use(Vuex);
 
 const replicantList: { name: string; bundle?: string }[] = [
   { name: 'host' },
+  { name: 'donationTotal' },
   { name: 'assets:sponsor-logos' },
   { name: 'runDataActiveRun', bundle: 'nodecg-speedcontrol' },
   { name: 'runDataArray', bundle: 'nodecg-speedcontrol' },
@@ -21,6 +22,7 @@ const replicants: ReplicantBrowser<unknown>[] = [];
 
 interface StoreTypes {
   host: Host;
+  donationTotal: DonationTotal;
   'assets:sponsor-logos': Asset[];
   runDataActiveRun: RunDataActiveRun;
   runDataArray: RunDataArray;
