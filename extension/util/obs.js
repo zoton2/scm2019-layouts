@@ -48,18 +48,38 @@ class OBSUtility extends obs_websocket_js_1.default {
         });
     }
     /**
-     * Mute the named OBS source.
+     * Mute or unmute the named OBS source.
      * @param source Name of the source.
      */
-    muteSource(source) {
+    toggleSourceAudio(source, mute = true) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield this.send('SetMute', { source, mute: true });
+                yield this.send('SetMute', { source, mute });
             }
             catch (err) {
                 nodecg.log.warn(`Cannot mute OBS source [${source}]: ${err.error}`);
                 throw err;
             }
+        });
+    }
+    /**
+     * Mute all audio sources listed in the config.
+     */
+    muteAudio() {
+        return __awaiter(this, void 0, void 0, function* () {
+            config.names.audioToMute.forEach((source) => {
+                this.toggleSourceAudio(source, true).catch(() => { });
+            });
+        });
+    }
+    /**
+     * Unmute all audio sources listed in the config.
+     */
+    unmuteAudio() {
+        return __awaiter(this, void 0, void 0, function* () {
+            config.names.audioToUnmute.forEach((source) => {
+                this.toggleSourceAudio(source, false).catch(() => { });
+            });
         });
     }
 }

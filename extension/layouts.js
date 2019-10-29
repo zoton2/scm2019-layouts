@@ -14,15 +14,11 @@ timer.on('change', (newVal, oldVal) => {
     }
 });
 nodecg.listenFor('nextRun', (data, ack) => {
-    sendMessage('changeToNextRun')
-        .then(() => {
-        // mute audio sources
-        obs_1.default.changeToIntermission();
-    })
-        .catch(() => { })
-        .finally(() => {
-        if (ack && !ack.handled) {
-            ack(null);
-        }
-    });
+    obs_1.default.changeToIntermission().catch(() => { });
+    setTimeout(() => sendMessage('changeToNextRun'), 500);
+    obs_1.default.muteAudio();
+    obs_1.default.unmuteAudio();
+    if (ack && !ack.handled) {
+        ack(null);
+    }
 });

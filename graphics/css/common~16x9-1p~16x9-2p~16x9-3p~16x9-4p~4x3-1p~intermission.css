@@ -65,7 +65,7 @@
 }
 
 
-.Flex[data-v-00662b6f] {
+.Flex[data-v-57113198] {
   flex-direction: row;
 }
 
@@ -83,6 +83,7 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
   color: white;
   font-family: 'Underscore', 'Optimus Princeps';
 }
