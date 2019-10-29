@@ -1,15 +1,6 @@
 <template>
   <div>
     <img src="./background.png">
-    <logo
-      :style="{
-        position: 'fixed',
-        left: '18px',
-        top: '29px',
-        width: '208px',
-        height: '132px',
-      }"
-    ></logo>
     <timer
       :style="{
         position: 'fixed',
@@ -82,7 +73,6 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import Logo from '../_misc/components/Logo.vue';
 import SponsorLogos from '../_misc/components/SponsorLogos.vue';
 import DonationTotal from '../_misc/components/DonationTotal.vue';
 import Host from '../_misc/components/Host.vue';
@@ -94,7 +84,6 @@ import { RunDataActiveRun } from '../../../../nodecg-speedcontrol/types';
 
 @Component({
   components: {
-    Logo,
     SponsorLogos,
     DonationTotal,
     Host,
