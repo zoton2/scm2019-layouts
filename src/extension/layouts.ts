@@ -15,7 +15,8 @@ timer.on('change', (newVal, oldVal) => {
 nodecg.listenFor('nextRun', (data, ack) => {
   obs.changeToIntermission().catch(() => {});
   setTimeout(() => sendMessage('changeToNextRun'), 500);
-  // need to also mute audio sources
+  obs.muteAudio();
+  obs.unmuteAudio();
 
   if (ack && !ack.handled) {
     ack(null);
