@@ -25,6 +25,7 @@
         height: '31px',
       }"
       small
+      :team="1"
     ></player>
     <player
       :style="{
@@ -34,6 +35,7 @@
         height: '31px',
       }"
       small
+      :team="2"
     ></player>
     <player
       :style="{
@@ -43,6 +45,7 @@
         height: '31px',
       }"
       small
+      :team="3"
     ></player>
     <host
       :style="{

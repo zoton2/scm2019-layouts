@@ -25,6 +25,7 @@
         width: '327px',
         height: '51px',
       }"
+      :team="1"
     ></player>
     <player
       :style="{
@@ -33,6 +34,7 @@
         width: '327px',
         height: '51px',
       }"
+      :team="2"
     ></player>
     <player
       :style="{
@@ -41,6 +43,7 @@
         width: '327px',
         height: '51px',
       }"
+      :team="3"
     ></player>
     <player
       :style="{
@@ -49,6 +52,7 @@
         width: '327px',
         height: '51px',
       }"
+      :team="4"
     ></player>
     <host
       :style="{
