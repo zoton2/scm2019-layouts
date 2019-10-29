@@ -66,13 +66,12 @@
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import { Asset } from '../../../types';
 import SponsorLogos from '../_misc/components/SponsorLogos.vue';
 import UpcomingRun from './components/UpcomingRun.vue';
 import DonationTotal from '../_misc/components/DonationTotal.vue';
 import Host from '../_misc/components/Host.vue';
 import Donations from '../_misc/components/Donations.vue';
-import { RunDataActiveRun, RunData } from '../../../../nodecg-speedcontrol/types';
+import { RunData } from '../../../../nodecg-speedcontrol/types';
 import { RunDataActiveRunSurrounding, RunDataArray } from '../../../../nodecg-speedcontrol/schemas';
 
 @Component({
@@ -85,9 +84,7 @@ import { RunDataActiveRunSurrounding, RunDataArray } from '../../../../nodecg-sp
   },
 })
 export default class App extends Vue {
-  @State('assets:sponsor-logos') sponsorLogos!: Asset[];
   @State runDataArray!: RunDataArray;
-  @State runDataActiveRun!: RunDataActiveRun;
   @State runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
   nextRun: RunData | null = null;
   onDeckArr: RunData[] = [];
