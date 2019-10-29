@@ -21,7 +21,7 @@
       type="info"
       :style="{ 'margin-top': '5px' }"
     >
-      Cannot change run while timer is {{ timerState }}.
+      Cannot change run while timer is {{ timer.state }}.
     </v-alert>
     <v-btn
       :style="{ 'margin-top': '5px' }"
