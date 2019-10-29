@@ -34,16 +34,34 @@ class OBSUtility extends obsWebsocketJs {
   }
 
   /**
-   * Mute the named OBS source.
+   * Mute or unmute the named OBS source.
    * @param source Name of the source.
    */
-  async muteSource(source: string): Promise<void> {
+  async toggleSourceAudio(source: string, mute = true): Promise<void> {
     try {
-      await this.send('SetMute', { source, mute: true });
+      await this.send('SetMute', { source, mute });
     } catch (err) {
       nodecg.log.warn(`Cannot mute OBS source [${source}]: ${err.error}`);
       throw err;
     }
+  }
+
+  /**
+   * Mute all audio sources listed in the config.
+   */
+  async muteAudio(): Promise<void> {
+    config.names.audioToMute.forEach((source) => {
+      this.toggleSourceAudio(source, true).catch(() => {});
+    });
+  }
+
+  /**
+   * Unmute all audio sources listed in the config.
+   */
+  async unmuteAudio(): Promise<void> {
+    config.names.audioToUnmute.forEach((source) => {
+      this.toggleSourceAudio(source, false).catch(() => {});
+    });
   }
 }
 

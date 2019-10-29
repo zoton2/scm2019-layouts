@@ -5,6 +5,8 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+export type Audio = string[];
+
 export interface Configschema {
   obs: {
     enable: boolean;
@@ -14,6 +16,8 @@ export interface Configschema {
       scenes: {
         intermission: string;
       };
+      audioToMute: Audio;
+      audioToUnmute: Audio;
     };
   };
 }

@@ -1,5 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
+  "definitions": {
+    "audio": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  },
   "type": "object",
   "additionalProperties": false,
   "properties": {
@@ -35,10 +44,18 @@
               "required": [
                 "intermission"
               ]
+            },
+            "audioToMute": {
+              "$ref": "#/definitions/audio"
+            },
+            "audioToUnmute": {
+              "$ref": "#/definitions/audio"
             }
           },
           "required": [
-            "scenes"
+            "scenes",
+            "audioToMute",
+            "audioToUnmute"
           ]
         }
       },
