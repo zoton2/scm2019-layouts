@@ -2,6 +2,7 @@
   <div :style="{ position: 'fixed' }">
     <transition name="fade">
       <div
+        v-if="host"
         :key="host"
         class="Flex"
         :style="{ position: 'absolute', 'font-size': '1.3em' }"
