@@ -21,7 +21,7 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { TweenLite } from 'gsap'; // eslint-disable-line @typescript-eslint/no-unused-vars
+import { TweenLite, Linear } from 'gsap'; // eslint-disable-line @typescript-eslint/no-unused-vars
 import { State } from 'vuex-class';
 import { DonationTotal as DonationTotalType } from '../../../../schemas';
 
@@ -37,7 +37,7 @@ export default class DonationTotal extends Vue {
   onTotalChange(newVal: DonationTotalType, oldVal: DonationTotalType): void {
     TweenLite.to({ total: oldVal }, 1, {
       total: newVal,
-      ease: 'Linear',
+      ease: Linear.easeNone,
       onUpdateParams: ['{self}'],
       onUpdate: (self: { target: { total: number }}) => {
         this.tweened = self.target.total;

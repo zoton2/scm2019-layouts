@@ -61,7 +61,7 @@ import SponsorLogos from '../_misc/components/SponsorLogos.vue';
 import UpcomingRun from './components/UpcomingRun.vue';
 import DonationTotal from '../_misc/components/DonationTotal.vue';
 import Host from '../_misc/components/Host.vue';
-import Donations from '../_misc/components/Donations.vue';
+import Donations from '../_misc/components/Ticker.vue';
 import { RunData } from '../../../../nodecg-speedcontrol/types';
 import { RunDataActiveRunSurrounding, RunDataArray } from '../../../../nodecg-speedcontrol/schemas';
 
