@@ -88,7 +88,7 @@ import { State } from 'vuex-class';
 import SponsorLogos from '../_misc/components/SponsorLogos.vue';
 import DonationTotal from '../_misc/components/DonationTotal.vue';
 import Host from '../_misc/components/Host.vue';
-import Donations from '../_misc/components/Donations.vue';
+import Donations from '../_misc/components/Ticker.vue';
 import Timer from '../_misc/components/Timer.vue';
 import Game from '../_misc/components/Game.vue';
 import Player from '../_misc/components/Player.vue';
