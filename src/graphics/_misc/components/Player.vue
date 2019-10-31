@@ -14,10 +14,18 @@
             height: '100%',
             padding: '5px 0',
             'object-fit': 'scale-down',
-          } : {}"
+          } : {
+            height: '25px',
+          }"
         >
-        <div :style="{ 'margin-left': '10px', 'font-size': (small) ? '1.1em' : '1.3em' }">
+        <div :style="{ 'margin-left': '5px', 'font-size': (small) ? '1.1em' : '1.3em' }">
           {{ name }}
+          <span
+            v-if="finishTime"
+            :style="{ 'font-size': '0.75em' }"
+          >
+            [{{ finishTime }}]
+          </span>
         </div>
       </div>
     </transition>
@@ -27,17 +35,34 @@
 <script lang="ts">
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'; // eslint-disable-line object-curly-newline, max-len
 import { State } from 'vuex-class';
-import { RunDataActiveRun } from '../../../../../nodecg-speedcontrol/types';
+import { RunDataActiveRun, Timer } from '../../../../../nodecg-speedcontrol/types';
 
 @Component
 export default class Player extends Vue {
   @State('runDataActiveRun') run!: RunDataActiveRun;
+  @State timer!: Timer;
   @Prop(Boolean) readonly small!: boolean;
   @Prop({ default: 1 }) readonly team!: number;
   timeout?: number;
   teamI = 0;
   index = 0;
   name: string | null = null;
+
+  get finishTime(): string | undefined {
+    if (!this.run || this.run.teams.length <= 1) {
+      return undefined;
+    }
+    const teamFinishTime = this.timer.teamFinishTimes[this.run.teams[this.teamI].id];
+    if (teamFinishTime) {
+      if (teamFinishTime.state === 'completed') {
+        return this.timer.teamFinishTimes[this.run.teams[this.teamI].id].time;
+      }
+      if (teamFinishTime.state === 'forfeit') {
+        return 'Forfeit';
+      }
+    }
+    return undefined;
+  }
 
   @Watch('run', { immediate: true })
   onRunChange(val: RunDataActiveRun): void {
