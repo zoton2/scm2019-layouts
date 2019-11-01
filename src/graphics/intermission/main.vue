@@ -21,10 +21,10 @@
     ></upcoming-run>
     <sponsor-logos
       :style="{
-        left: '835px',
-        top: '220px',
-        width: '248px',
-        height: '174px',
+        left: '855px',
+        top: '240px',
+        width: '208px',
+        height: '134px',
       }"
     ></sponsor-logos>
     <host
