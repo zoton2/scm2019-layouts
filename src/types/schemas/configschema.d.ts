@@ -8,16 +8,16 @@
 export type Audio = string[];
 
 export interface Configschema {
-  obs: {
-    enable: boolean;
-    address: string;
-    password?: string;
-    names: {
-      scenes: {
-        intermission: string;
-      };
-      audioToMute: Audio;
-      audioToUnmute: Audio;
-    };
-  };
+	obs: {
+		enable: boolean;
+		address: string;
+		password?: string;
+		names: {
+			scenes: {
+				intermission: string;
+			};
+			audioToMute: Audio;
+			audioToUnmute: Audio;
+		};
+	};
 }
