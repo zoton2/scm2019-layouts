@@ -1,30 +1,24 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
-const globby = require('globby');
-const path = require('path');
+import fibers from 'fibers';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+import { globbySync } from 'globby';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import path from 'path';
+import sass from 'sass';
+import TsConfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
+import VueLoaderPlugin from 'vue-loader/lib/plugin.js';
+import VuetifyLoaderPlugin from 'vuetify-loader/lib/plugin.js';
+import LiveReloadPlugin from 'webpack-livereload-plugin';
 
 const isProd = process.env.NODE_ENV === 'production';
+const __dirname = path.resolve();
 
 const config = (name) => {
-  const entry = globby
-    .sync('*/main.ts', {cwd: `src/${name}`})
+  const entry = globbySync('*/main.ts', {cwd: `src/${name}`})
     .reduce((prev, curr) => {
       prev[path.basename(path.dirname(curr))] = `./${curr}`;
       return prev;
     }, {});
-
-  const miniCSSOpts = {
-    loader: MiniCssExtractPlugin.loader,
-    options: {
-      hmr: !isProd,
-      publicPath: '../',
-    },
-  };
 
   let plugins = [];
   if (!isProd) {
@@ -37,7 +31,6 @@ const config = (name) => {
   }
   plugins = plugins.concat(
     [
-      new HardSourceWebpackPlugin(),
       new VueLoaderPlugin(),
       ...Object.keys(entry).map(
         (entryName) =>
@@ -45,11 +38,15 @@ const config = (name) => {
             filename: `${entryName}.html`,
             chunks: [entryName],
             title: entryName,
-            template: './template.html',
+            template: 'template.html',
           }),
       ),
       new ForkTsCheckerWebpackPlugin({
-        vue: true,
+        typescript: {
+          extensions: {
+            vue: true,
+          },
+        },
       }),
     ]
   );
@@ -57,12 +54,13 @@ const config = (name) => {
     plugins.push(
       new MiniCssExtractPlugin({
         filename: 'css/[name].css',
+        ignoreOrder: name === 'dashboard', // To ignore Vuetify issues, good idea or not?
       })
     );
   }
   if (name === 'dashboard') {
-    plugins.push(    
-      new VuetifyLoaderPlugin()
+    plugins.push(
+      new VuetifyLoaderPlugin(),
     );
   }
 
@@ -78,6 +76,14 @@ const config = (name) => {
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx', '.json'],
+      alias: {
+        vue: 'vue/dist/vue.esm.js',
+      },
+      plugins: [
+        new TsConfigPathsPlugin({
+          configFile: 'tsconfig.browser.json',
+        }),
+      ],
     },
     module: {
       rules: [
@@ -88,21 +94,31 @@ const config = (name) => {
         {
           test: /\.css$/,
           use: [
-            (isProd) ? miniCSSOpts : 'vue-style-loader',
-            'css-loader',
+            (isProd) ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                esModule: false,
+              },
+            },
           ],
         },
         {
           test: /\.s(c|a)ss$/,
           use: [
-            (isProd) ? miniCSSOpts : 'vue-style-loader',
-            'css-loader',
+            (isProd) ? MiniCssExtractPlugin.loader : 'vue-style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                esModule: false,
+              },
+            },
             {
               loader: 'sass-loader',
               options: {
-                implementation: require('sass'),
+                implementation: sass,
                 sassOptions: {
-                  fiber: require('fibers'),
+                  fiber: fibers,
                 },
               },
             },
@@ -110,17 +126,30 @@ const config = (name) => {
         },
         {
           test: /\.(woff(2)?|ttf|eot)$/,
-          loader: 'file-loader',
-          options: {
-            name: 'font/[name].[ext]',
+          type: 'asset/resource',
+          generator: {
+            filename: 'font/[name][ext]',
           },
         },
         {
-          test: /\.(png|svg)?$/,
-          loader: 'file-loader',
-          options: {
-            name: 'img/[name]-[contenthash].[ext]',
+          test: /\.svg?$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'font/[name][ext]',
           },
+          include: [
+            path.resolve(__dirname, `src/${name}/_misc/fonts`),
+          ],
+        },
+        {
+          test: /\.(png|svg)?$/,
+          type: 'asset/resource',
+          generator: {
+            filename: 'img/[name]-[contenthash][ext]',
+          },
+          exclude: [
+            path.resolve(__dirname, `src/${name}/_misc/fonts`),
+          ],
         },
         {
           test: /\.tsx?$/,
@@ -134,13 +163,14 @@ const config = (name) => {
     },
     plugins,
     optimization: (isProd) ? {
+      // v5 migration guide says to reconsider this, so maybe change in the future?
       splitChunks: {
         chunks: 'all',
         cacheGroups: {
           common: {
             minChunks: 2,
           },
-          vendors: false,
+          defaultVendors: false,
           default: false,
         },
       },
@@ -148,7 +178,7 @@ const config = (name) => {
   };
 }
 
-module.exports = [
+export default [
   config('dashboard'),
   config('graphics'),
 ];
