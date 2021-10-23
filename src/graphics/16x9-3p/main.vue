@@ -3,16 +3,16 @@
     <img src="./background.png">
     <timer
       :style="{
-        left: '417px',
-        top: '551px',
+        left: '250px',
+        top: '410px',
         width: '211px',
         height: '75px',
       }"
     ></timer>
     <game
       :style="{
-        left: '250px',
-        top: '469px',
+        left: '40px',
+        top: '410px',
         width: '211px',
         height: '75px',
       }"
@@ -49,34 +49,34 @@
     ></player>
     <host
       :style="{
-        left: '417px',
-        top: '633px',
+        left: '36px',
+        top: '505px',
         width: '211px',
         height: '75px',
       }"
     ></host>
     <donation-total
       :style="{
-        left: '31px',
-        top: '469px',
+        left: '250px',
+        top: '503px',
         width: '211px',
         height: '75px',
       }"
     ></donation-total>
     <donations
       :style="{
-        left: '32px',
-        top: '387px',
-        width: '596px',
+        left: '250px',
+        top: '590px',
+        width: '380px',
         height: '75px',
       }"
     ></donations>
     <sponsor-logos
       :style="{
-        left: '465px',
-        top: '470px',
-        width: '163px',
-        height: '75px',
+        left: '459px',
+        top: '449px',
+        width: '188px',
+        height: '100px',
       }"
     ></sponsor-logos>
   </div>

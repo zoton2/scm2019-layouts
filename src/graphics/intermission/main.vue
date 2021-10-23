@@ -1,6 +1,117 @@
 <template>
   <div>
-    <img src="./background.png">
+    <img
+      v-if="nextGameName === 'dark souls'"
+      src="./Backgrounds/ds.png"
+    >
+    <img
+      v-else-if="nextGameName === 'dark souls ii'"
+      src="./Backgrounds/ds2.png"
+    >
+    <img
+      v-else-if="nextGameName === 'dark souls iii'"
+      src="./Backgrounds/ds3.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('demon')"
+      src="./Backgrounds/des.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('bloodborne')"
+      src="./Backgrounds/bb.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('sekiro')"
+      src="./Backgrounds/sekiro.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('bayonetta')"
+      src="./Backgrounds/bayo.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('castlevania')"
+      src="./Backgrounds/castle.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('devil')"
+      src="./Backgrounds/dmc4.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('matador')"
+      src="./Backgrounds/elm.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('furi')"
+      src="./Backgrounds/furi.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('hollow')"
+      src="./Backgrounds/hk.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('hyper')"
+      src="./Backgrounds/hyper.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('land')"
+      src="./Backgrounds/land.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('london')"
+      src="./Backgrounds/london.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('solid')"
+      src="./Backgrounds/mgs.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('mulaka')"
+      src="./Backgrounds/mulaka.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('chaos')"
+      src="./Backgrounds/mwc.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('woods')"
+      src="./Backgrounds/nitw.png"
+	>
+    <img
+      v-else-if="nextGameName.includes('prince')"
+      src="./Backgrounds/pop.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('rain')"
+      src="./Backgrounds/ror.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('meat')"
+      src="./Backgrounds/smb.png"
+    >
+	<img
+      v-else-if="nextGameName === 'super mario land'"
+      src="./Backgrounds/sml.png"
+    >
+	<img
+      v-else-if="nextGameName === 'super mario odyssey'"
+      src="./Backgrounds/smo.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('vice')"
+      src="./Backgrounds/vc.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('noid')"
+      src="./Backgrounds/yo.png"
+    >
+	<img
+      v-else-if="nextGameName.includes('zelda')"
+      src="./Backgrounds/zelda.png"
+    >
+    <img
+      v-else
+      src="./background.png"
+    >
     <upcoming-run
       :run-data="nextRun"
       :style="{
@@ -21,32 +132,32 @@
     ></upcoming-run>
     <sponsor-logos
       :style="{
-        left: '855px',
-        top: '240px',
+        left: '865px',
+        top: '230px',
         width: '208px',
         height: '134px',
       }"
     ></sponsor-logos>
     <host
       :style="{
-        left: '839px',
-        top: '446px',
+        left: '852px',
+        top: '440px',
         width: '240px',
         height: '76px',
       }"
     ></host>
     <donation-total
       :style="{
-        left: '839px',
-        top: '538px',
+        left: '845px',
+        top: '530px',
         width: '240px',
         height: '76px',
       }"
     ></donation-total>
     <donations
       :style="{
-        left: '172px',
-        top: '637px',
+        left: '180px',
+        top: '625px',
         width: '911px',
         height: '59px',
       }"
@@ -79,6 +190,10 @@ export default class App extends Vue {
   @State runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
   nextRun: RunData | null = null;
   onDeckArr: RunData[] = [];
+  
+    get nextGameName(): string {
+    return ((this.nextRun ? this.nextRun.game : undefined) || '').toLowerCase();
+  }
 
   mounted(): void {
     this.updateNextRuns();
