@@ -8,7 +8,7 @@
         filled
         :spellcheck="false"
         @keyup.enter="updateHost"
-      ></v-text-field>
+      />
       <v-btn
         height="56px"
         :style="{ 'min-width': '0', 'margin-left': '5px' }"

@@ -1,11 +1,11 @@
+import { Asset } from '@scm2019-layouts/types';
+import { DonationTotal, Host } from '@scm2019-layouts/types/schemas';
 import clone from 'clone';
-import { ReplicantBrowser } from 'nodecg/types/browser'; // eslint-disable-line import/no-unresolved
+import type { ReplicantBrowser } from 'nodecg/types/browser';
 import Vue from 'vue';
 import Vuex, { Store } from 'vuex';
 import { RunDataActiveRun, RunDataArray, Timer } from '../../../nodecg-speedcontrol/src/types';
 import { RunDataActiveRunSurrounding } from '../../../nodecg-speedcontrol/src/types/schemas';
-import { DonationTotal, Host } from '../../schemas';
-import { Asset } from '../../types';
 
 Vue.use(Vuex);
 

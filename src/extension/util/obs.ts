@@ -1,7 +1,5 @@
-/* eslint @typescript-eslint/ban-ts-ignore: off */
-
+import { Configschema } from '@scm2019-layouts/types/schemas';
 import obsWebsocketJs from 'obs-websocket-js';
-import { Configschema } from '../../../configschema';
 import { get } from './nodecg';
 
 const nodecg = get();
@@ -88,6 +86,7 @@ if (config.enable) {
     setTimeout(connect, 5000);
   });
 
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore: Pretty sure this emits an error.
   obs.on('error', (err) => {
     nodecg.log.warn('OBS connection error.');

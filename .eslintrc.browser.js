@@ -33,9 +33,9 @@ module.exports = {
         // This is needed to properly resolve paths.
         project: 'tsconfig.browser.json',
       },
-      webpack: {
+      /* webpack: {
         config: path.join(__dirname, 'webpack.config.js'),
-      },
+      }, */
     },
     'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
   },

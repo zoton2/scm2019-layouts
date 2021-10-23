@@ -21,9 +21,9 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { TweenLite, Linear } from 'gsap'; // eslint-disable-line @typescript-eslint/no-unused-vars
+import { TweenLite, Linear } from 'gsap';
 import { State } from 'vuex-class';
-import { DonationTotal as DonationTotalType } from '../../../../schemas';
+import { DonationTotal as DonationTotalType } from '@scm2019-layouts/types/schemas';
 
 @Component
 export default class DonationTotal extends Vue {
@@ -39,7 +39,7 @@ export default class DonationTotal extends Vue {
       total: newVal,
       ease: Linear.easeNone,
       onUpdateParams: ['{self}'],
-      onUpdate: (self: { target: { total: number }}) => {
+      onUpdate: (self: { target: { total: number } }) => {
         this.tweened = self.target.total;
       },
     });

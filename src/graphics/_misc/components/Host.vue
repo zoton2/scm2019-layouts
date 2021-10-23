@@ -20,7 +20,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import { Host as HostType } from '../../../../schemas';
+import { Host as HostType } from '@scm2019-layouts/types/schemas';
 
 @Component
 export default class Host extends Vue {

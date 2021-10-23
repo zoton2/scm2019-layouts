@@ -8,7 +8,7 @@
         width: '191px',
         height: '67px',
       }"
-    ></timer>
+    />
     <game
       :style="{
         left: '544px',
@@ -17,7 +17,7 @@
         height: '67px',
       }"
       :scale="0.8"
-    ></game>
+    />
     <player
       :style="{
         left: '17px',
@@ -26,7 +26,7 @@
         height: '51px',
       }"
       :team="1"
-    ></player>
+    />
     <player
       :style="{
         left: '933px',
@@ -35,7 +35,7 @@
         height: '51px',
       }"
       :team="2"
-    ></player>
+    />
     <player
       :style="{
         left: '17px',
@@ -44,7 +44,7 @@
         height: '51px',
       }"
       :team="3"
-    ></player>
+    />
     <player
       :style="{
         left: '934px',
@@ -53,7 +53,7 @@
         height: '51px',
       }"
       :team="4"
-    ></player>
+    />
     <host
       :style="{
         left: '544px',
@@ -61,7 +61,7 @@
         width: '191px',
         height: '67px',
       }"
-    ></host>
+    />
     <donation-total
       :style="{
         left: '544px',
@@ -69,7 +69,7 @@
         width: '191px',
         height: '67px',
       }"
-    ></donation-total>
+    />
     <donations
       :style="{
         left: '354px',
@@ -77,7 +77,7 @@
         width: '570px',
         height: '52px',
       }"
-    ></donations>
+    />
     <sponsor-logos
       :style="{
         left: '543px',
@@ -85,7 +85,7 @@
         width: '193px',
         height: '119px',
       }"
-    ></sponsor-logos>
+    />
   </div>
 </template>
 

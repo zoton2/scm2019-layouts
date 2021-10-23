@@ -1,14 +1,13 @@
 import needle from 'needle';
 import socketIO from 'socket.io-client';
-import { DonationTotal } from '../../schemas';
 import { get } from './util/nodecg';
+import { donationTotal } from './util/replicants';
 
 const nodecg = get();
 const eventShort = 'scm2020';
 const repeaterURL = 'https://donate.speedsouls.com';
 const statsURL = 'https://donate.speedsouls.com/2?json';
 const repeater = socketIO(repeaterURL, { path: '/repeater/socket.io' });
-const donationTotal = nodecg.Replicant<DonationTotal>('donationTotal');
 
 // Get donation total from HTTPS API, backup for the repeater socket server.
 // We need to add both events together to get the correct total.
