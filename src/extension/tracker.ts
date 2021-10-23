@@ -4,9 +4,9 @@ import { get } from './util/nodecg';
 import { donationTotal } from './util/replicants';
 
 const nodecg = get();
-const eventShort = 'scm2020';
+const eventShort = 'SCM2021';
 const repeaterURL = 'https://donate.speedsouls.com';
-const statsURL = 'https://donate.speedsouls.com/2?json';
+const statsURL = 'https://donate.speedsouls.com/3?json';
 const repeater = socketIO(repeaterURL, { path: '/repeater/socket.io' });
 
 // Get donation total from HTTPS API, backup for the repeater socket server.
