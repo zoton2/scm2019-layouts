@@ -19,12 +19,12 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { State } from 'vuex-class';
 import { Host as HostType } from '@scm2019-layouts/types/schemas';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 
 @Component
 export default class Host extends Vue {
-  @State host!: HostType;
+  @replicantNS.State((s) => s.reps.host) readonly host!: HostType;
 }
 </script>
 

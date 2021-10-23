@@ -36,15 +36,17 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 import { RunDataActiveRunSurrounding } from '../../../../nodecg-speedcontrol/src/types/schemas';
 import { RunDataArray, RunData, Timer } from '../../../../nodecg-speedcontrol/src/types';
 
 @Component
 export default class App extends Vue {
-  @State runDataArray!: RunDataArray;
-  @State runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
-  @State timer!: Timer;
+  @replicantNS.State((s) => s.reps.runDataArray) readonly runDataArray!: RunDataArray;
+  @replicantNS.State(
+    (s) => s.reps.runDataActiveRunSurrounding,
+  ) readonly runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
+  @replicantNS.State((s) => s.reps.timer) readonly timer!: Timer;
 
   get nextRun(): RunData | undefined {
     return this.runDataArray.find((run) => run.id === this.runDataActiveRunSurrounding.next);

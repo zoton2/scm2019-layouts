@@ -25,13 +25,13 @@
 </template>
 
 <script lang="ts">
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import { State } from 'vuex-class';
 import { RunDataActiveRun } from '../../../../../nodecg-speedcontrol/src/types';
 
 @Component
 export default class Game extends Vue {
-  @State runDataActiveRun!: RunDataActiveRun;
+  @replicantNS.State((s) => s.reps.runDataActiveRun) readonly runDataActiveRun!: RunDataActiveRun;
   @Prop({ default: 1 }) readonly scale!: number;
 }
 </script>

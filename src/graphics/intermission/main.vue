@@ -167,7 +167,6 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { State } from 'vuex-class';
 import SponsorLogos from '../_misc/components/SponsorLogos.vue';
 import UpcomingRun from './components/UpcomingRun.vue';
 import DonationTotal from '../_misc/components/DonationTotal.vue';
@@ -175,6 +174,7 @@ import Host from '../_misc/components/Host.vue';
 import Donations from '../_misc/components/Ticker.vue';
 import { RunData } from '../../../../nodecg-speedcontrol/src/types';
 import { RunDataActiveRunSurrounding, RunDataArray } from '../../../../nodecg-speedcontrol/src/types/schemas';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 
 @Component({
   components: {
@@ -186,8 +186,10 @@ import { RunDataActiveRunSurrounding, RunDataArray } from '../../../../nodecg-sp
   },
 })
 export default class App extends Vue {
-  @State runDataArray!: RunDataArray;
-  @State runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
+  @replicantNS.State((s) => s.reps.runDataArray) readonly runDataArray!: RunDataArray;
+  @replicantNS.State(
+    (s) => s.reps.runDataActiveRunSurrounding,
+  ) readonly runDataActiveRunSurrounding!: RunDataActiveRunSurrounding;
   nextRun: RunData | null = null;
   onDeckArr: RunData[] = [];
 

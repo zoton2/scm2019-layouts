@@ -93,6 +93,7 @@ import Timer from '../_misc/components/Timer.vue';
 import Game from '../_misc/components/Game.vue';
 import Player from '../_misc/components/Player.vue';
 import { RunDataActiveRun } from '../../../../nodecg-speedcontrol/src/types';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 
 @Component({
   components: {
@@ -106,7 +107,7 @@ import { RunDataActiveRun } from '../../../../nodecg-speedcontrol/src/types';
   },
 })
 export default class App extends Vue {
-  @State runDataActiveRun!: RunDataActiveRun;
+  @replicantNS.State((s) => s.reps.runDataActiveRun) readonly runDataActiveRun!: RunDataActiveRun;
 }
 </script>
 

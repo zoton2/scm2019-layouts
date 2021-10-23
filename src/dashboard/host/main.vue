@@ -23,15 +23,15 @@
 </template>
 
 <script lang="ts">
+import { replicantModule, replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
+import { Host } from '@scm2019-layouts/types/schemas';
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { State, Mutation } from 'vuex-class';
 
 @Component
 export default class App extends Vue {
   name = '';
   saved = false;
-  @State host!: string;
-  @Mutation('updateHost') updateHostMutation!: (value: string) => void;
+  @replicantNS.State((s) => s.reps.host) readonly host!: Host;
 
   @Watch('host', { immediate: true })
   onHostChange(val: string): void {
@@ -39,7 +39,7 @@ export default class App extends Vue {
   }
 
   updateHost(): void {
-    this.updateHostMutation(this.name);
+    replicantModule.setReplicant<Host>({ name: 'host', val: this.name });
     this.saved = true;
     setTimeout(() => { this.saved = false; }, 1000);
   }
