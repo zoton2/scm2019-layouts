@@ -54,7 +54,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Ref, Watch } from 'vue-property-decorator'; // eslint-disable-line object-curly-newline, max-len
+import { Vue, Component, Ref, Watch } from 'vue-property-decorator';
 import { State } from 'vuex-class';
 import { Timer as TimerType, RunDataActiveRun } from '../../../../../nodecg-speedcontrol/src/types';
 

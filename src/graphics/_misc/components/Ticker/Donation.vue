@@ -8,15 +8,13 @@
 </template>
 
 <script lang="ts">
-// eslint-disable-next-line object-curly-newline
 import { Vue, Component, Ref, Prop } from 'vue-property-decorator';
 import { TweenLite, Linear } from 'gsap';
 // eslint-disable-next-line
 // @ts-ignore
 import ScrollToPlugin from 'gsap/ScrollToPlugin';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const plugins = [ScrollToPlugin];
+const plugins = [ScrollToPlugin]; // eslint-disable-line @typescript-eslint/no-unused-vars
 
 @Component
 export default class Donation extends Vue {
