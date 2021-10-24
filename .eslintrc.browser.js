@@ -1,49 +1,67 @@
+const path = require('path');
+
 module.exports = {
   root: true,
+  env: {
+    node: true,
+  },
   parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: 'tsconfig.browser.json',
-    sourceType: 'module',
     extraFileExtensions: ['.vue'],
-  },
-  env: {
-    es6: true,
-    node: true,
+    ecmaVersion: 2020,
   },
   globals: {
     nodecg: 'readonly',
     NodeCG: 'readonly',
   },
   plugins: [
-    'vue',
     '@typescript-eslint',
   ],
   extends: [
+    'plugin:vue/essential',
     'airbnb-base',
-    'plugin:vue/recommended',
+    'airbnb-typescript/base',
     'eslint:recommended',
-    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/typescript',
   ],
-  rules: {
-    'import/no-extraneous-dependencies': ['error', {
-      devDependencies: true, // Some places have dev deps imported where eslint complains.
-      packageDir: ['.', '../..'], // Check for deps in NodeCG folder as well.
-    }],
-    'vue/html-self-closing': ['error', {
-      html: {
-        component: 'never', // Transpiler(?) has issues with self closing components.
+  settings: {
+    'import/resolver': {
+      typescript: {
+        // This is needed to properly resolve paths.
+        project: 'tsconfig.browser.json',
       },
+      /* webpack: {
+        config: path.join(__dirname, 'webpack.config.js'),
+      }, */
+    },
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+  },
+  rules: {
+    // Everything is compiled for the browser so dev dependencies are fine.
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    // max-len set to ignore "import" lines (as they usually get long and messy).
+    'max-len': ['error', { code: 100, ignorePattern: '^import\\s.+\\sfrom\\s.+;$' }],
+    // I mainly have this off as it ruins auto import sorting in VSCode.
+    'object-curly-newline': 'off',
+    '@typescript-eslint/lines-between-class-members': 'off',
+    'vue/html-self-closing': ['error'],
+    'class-methods-use-this': 'off',
+    'no-param-reassign': ['error', {
+      props: true,
+      ignorePropertyModificationsFor: [
+        'state', // for vuex state
+        'acc', // for reduce accumulators
+        'e', // for e.returnvalue
+      ],
     }],
-    'max-len': ["error", { "code": 100 }],
-    'lines-between-class-members': 'off',
-    // I legit think the 5 things below are broken, might be a typescript-eslint issue.
-    'vue/no-parsing-error': 'off',
-    'vue/valid-v-on': 'off',
-    'vue/valid-v-if': 'off',
-    'vue/valid-v-bind': 'off',
-    'vue/valid-v-model': 'off',
+    'import/extensions': ['error', 'ignorePackages', {
+      js: 'never',
+      jsx: 'never',
+      ts: 'never',
+      tsx: 'never',
+    }],
   }
 };

@@ -33,14 +33,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator'; // eslint-disable-line object-curly-newline, max-len
-import { State } from 'vuex-class';
-import { RunDataActiveRun, Timer } from '../../../../../nodecg-speedcontrol/types';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
+import { RunDataActiveRun, Timer } from '../../../../../nodecg-speedcontrol/src/types';
 
 @Component
 export default class Player extends Vue {
-  @State('runDataActiveRun') run!: RunDataActiveRun;
-  @State timer!: Timer;
+  @replicantNS.State((s) => s.reps.runDataActiveRun) readonly run!: RunDataActiveRun;
+  @replicantNS.State((s) => s.reps.timer) readonly timer!: Timer;
   @Prop(Boolean) readonly small!: boolean;
   @Prop({ default: 1 }) readonly team!: number;
   timeout?: number;

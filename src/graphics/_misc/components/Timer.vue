@@ -54,14 +54,14 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Ref, Watch } from 'vue-property-decorator'; // eslint-disable-line object-curly-newline, max-len
-import { State } from 'vuex-class';
-import { Timer as TimerType, RunDataActiveRun } from '../../../../../nodecg-speedcontrol/types';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
+import { Vue, Component, Ref, Watch } from 'vue-property-decorator';
+import { Timer as TimerType, RunDataActiveRun } from '../../../../../nodecg-speedcontrol/src/types';
 
 @Component
 export default class Timer extends Vue {
-  @State timer!: TimerType;
-  @State runDataActiveRun!: RunDataActiveRun;
+  @replicantNS.State((s) => s.reps.timer) readonly timer!: TimerType;
+  @replicantNS.State((s) => s.reps.runDataActiveRun) readonly runDataActiveRun!: RunDataActiveRun;
   @Ref('Estimate') readonly estimate!: HTMLElement;
   isMounted = false;
   estimateWidth = '0px';

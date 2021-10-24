@@ -1,4 +1,4 @@
-import { ExtensionReturn, Timer } from '../../../nodecg-speedcontrol/types';
+import { ExtensionReturn, Timer } from '../../../nodecg-speedcontrol/src/types';
 import { get } from './util/nodecg';
 import obs from './util/obs';
 

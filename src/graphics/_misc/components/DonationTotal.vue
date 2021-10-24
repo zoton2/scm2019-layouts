@@ -21,13 +21,13 @@
 
 <script lang="ts">
 import { Vue, Component, Watch } from 'vue-property-decorator';
-import { TweenLite, Linear } from 'gsap'; // eslint-disable-line @typescript-eslint/no-unused-vars
-import { State } from 'vuex-class';
-import { DonationTotal as DonationTotalType } from '../../../../schemas';
+import { gsap } from 'gsap';
+import { DonationTotal as DonationTotalType } from '@scm2019-layouts/types/schemas';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 
 @Component
 export default class DonationTotal extends Vue {
-  @State donationTotal!: DonationTotalType;
+  @replicantNS.State((s) => s.reps.donationTotal) readonly donationTotal!: DonationTotalType;
   tweened = 0;
   created(): void {
     this.tweened = this.donationTotal;
@@ -35,11 +35,12 @@ export default class DonationTotal extends Vue {
 
   @Watch('donationTotal')
   onTotalChange(newVal: DonationTotalType, oldVal: DonationTotalType): void {
-    TweenLite.to({ total: oldVal }, 1, {
+    gsap.to({ total: oldVal }, {
+      duration: 1,
       total: newVal,
-      ease: Linear.easeNone,
+      ease: 'none',
       onUpdateParams: ['{self}'],
-      onUpdate: (self: { target: { total: number }}) => {
+      onUpdate: (self: { target: { total: number } }) => {
         this.tweened = self.target.total;
       },
     });

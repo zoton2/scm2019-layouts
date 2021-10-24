@@ -8,7 +8,7 @@
         width: '191px',
         height: '67px',
       }"
-    ></timer>
+    />
     <game
       :style="{
         left: '544px',
@@ -17,7 +17,7 @@
         height: '67px',
       }"
       :scale="0.8"
-    ></game>
+    />
     <player
       :style="{
         left: '17px',
@@ -26,7 +26,7 @@
         height: '51px',
       }"
       :team="1"
-    ></player>
+    />
     <player
       :style="{
         left: '933px',
@@ -35,7 +35,7 @@
         height: '51px',
       }"
       :team="2"
-    ></player>
+    />
     <player
       :style="{
         left: '17px',
@@ -44,7 +44,7 @@
         height: '51px',
       }"
       :team="3"
-    ></player>
+    />
     <player
       :style="{
         left: '934px',
@@ -53,7 +53,7 @@
         height: '51px',
       }"
       :team="4"
-    ></player>
+    />
     <host
       :style="{
         left: '544px',
@@ -61,7 +61,7 @@
         width: '191px',
         height: '67px',
       }"
-    ></host>
+    />
     <donation-total
       :style="{
         left: '544px',
@@ -69,7 +69,7 @@
         width: '191px',
         height: '67px',
       }"
-    ></donation-total>
+    />
     <donations
       :style="{
         left: '354px',
@@ -77,7 +77,7 @@
         width: '570px',
         height: '52px',
       }"
-    ></donations>
+    />
     <sponsor-logos
       :style="{
         left: '543px',
@@ -85,13 +85,13 @@
         width: '193px',
         height: '119px',
       }"
-    ></sponsor-logos>
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import { State } from 'vuex-class';
+import { replicantNS } from '@scm2019-layouts/browser_shared/replicant_store';
 import SponsorLogos from '../_misc/components/SponsorLogos.vue';
 import DonationTotal from '../_misc/components/DonationTotal.vue';
 import Host from '../_misc/components/Host.vue';
@@ -99,7 +99,7 @@ import Donations from '../_misc/components/Ticker.vue';
 import Timer from '../_misc/components/Timer.vue';
 import Game from '../_misc/components/Game.vue';
 import Player from '../_misc/components/Player.vue';
-import { RunDataActiveRun } from '../../../../nodecg-speedcontrol/types';
+import { RunDataActiveRun } from '../../../../nodecg-speedcontrol/src/types';
 
 @Component({
   components: {
@@ -113,7 +113,7 @@ import { RunDataActiveRun } from '../../../../nodecg-speedcontrol/types';
   },
 })
 export default class App extends Vue {
-  @State runDataActiveRun!: RunDataActiveRun;
+  @replicantNS.State((s) => s.reps.runDataActiveRun) readonly runDataActiveRun!: RunDataActiveRun;
 }
 </script>
 
