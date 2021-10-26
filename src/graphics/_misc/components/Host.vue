@@ -9,7 +9,7 @@
       >
         <img
           src="../mic.png"
-          :style="{ 'margin-right': '10px' }"
+          :style="{ 'margin-right': '10px', height: '33px' }"
         >
         <div>{{ host }}</div>
       </div>
