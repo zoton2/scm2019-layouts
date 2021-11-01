@@ -35,13 +35,13 @@ export default class DonationTotal extends Vue {
 
   @Watch('donationTotal')
   onTotalChange(newVal: DonationTotalType, oldVal: DonationTotalType): void {
-    gsap.to({ total: oldVal }, {
+    const data = { total: oldVal };
+    gsap.to(data, {
       duration: 1,
       total: newVal,
       ease: 'none',
-      onUpdateParams: ['{self}'],
-      onUpdate: (self: { target: { total: number } }) => {
-        this.tweened = self.target.total;
+      onUpdate: () => {
+        this.tweened = data.total;
       },
     });
   }
